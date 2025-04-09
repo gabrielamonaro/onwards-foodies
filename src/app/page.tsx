@@ -4,11 +4,11 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <header className="flex gap-12 my-12 mx-auto w-[90%] max-w-18 column">
-        <div className="w-[40rem] h-[25rem]">
+      <header className="flex justify-center gap-8 my-12">
+        <div className="w-[500px] h-[25rem]">
           <ImageSlideshow />
         </div>
-        <div className="flex flex-col gap-8 h-[25rem]">
+        <div className="flex flex-col gap-8 h-[25rem] px-0">
           <div className="text-stone-300 ">
             <h1 className="text-2xl bold  tracking-wider uppercase text-transparent bg-gradient-to-r from-[#f9572a] to-[#ffc905] bg-clip-text">
               NextLevel Food fot NextLever Foodies

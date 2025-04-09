@@ -34,19 +34,22 @@ export default function ImageSlideshow() {
   }, []);
 
   return (
-    <div className="relative w-full h-full rounded-sm overflow-hidden shadow-sm">
-      {images.map((image, index) => (
-        <Image
-          key={index}
-          src={image.image}
-          className={
-            index === currentImageIndex
-              ? "w-full h-full object-cover absolute top-0 left-0 transition-all duration-500 ease-in-out z-[1] opacity-100 scale-100 translate-x-0 rotate-0"
-              : "w-full h-full object-cover absolute top-0 left-0 opacity-0 scale-[1.1] -translate-x-4 rotate-[-5deg] transition-all duration-500 ease-in-out"
-          }
-          alt={image.alt}
-        />
-      ))}
+    <div className="relative w-[500px] h-[300px] rounded-sm overflow-hidden shadow-sm">
+      {images.map((image, index) => {
+        return (
+          <Image
+            key={index}
+            src={image.image}
+            fill
+            className={
+              index === currentImageIndex
+                ? "w-full h-full object-cover absolute top-0 left-0 transition-all duration-500 ease-in-out z-[1] opacity-100 scale-100 translate-x-0 rotate-0"
+                : "w-full h-full object-cover absolute top-0 left-0 opacity-0 scale-[1.1] -translate-x-4 rotate-[-5deg] transition-all duration-500 ease-in-out"
+            }
+            alt={image.alt}
+          />
+        );
+      })}
     </div>
   );
 }
