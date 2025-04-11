@@ -1,9 +1,13 @@
 import Link from "next/link";
+import { getMeals } from "@/../lib/meals";
+import MealsGrid from "@/components/meals/meals-grid";
 
-export default function Meals() {
+export default async function Meals() {
+  const meals = await getMeals();
+
   return (
-    <>
-      <header className="flex flex-col gap-12 my-[3rem] mb-[5rem] mx-auto w-[90%] max-w-[75rem] text-[#ddd6cb] text-[1.5rem]">
+    <div className="min-h-screen flex flex-col align-center justify-center">
+      <header className="flex flex-col gap-12 my-[3rem] mx-auto mb-[5rem] w-[90%] max-w-[75rem] text-[#ddd6cb] text-[1.5rem]">
         <h1 className="font-montserrat">
           Delicious meals, created{" "}
           <span className="bg-gradient-to-r from-[#f9572a] to-[#ff8a05] bg-clip-text text-transparent">
@@ -18,11 +22,13 @@ export default function Meals() {
             href="/meals/share"
             className="inline-block mt-4 px-4 py-2 rounded-lg bg-gradient-to-r from-[#f9572a] to-[#ff9b05] text-white font-bold no-underline"
           >
-            Share your favorite receipe
+            Share your favorite recipe
           </Link>
         </p>
       </header>
-      <main></main>
-    </>
+      <main className="flex-1">
+        <MealsGrid meals={meals} />
+      </main>
+    </div>
   );
 }
