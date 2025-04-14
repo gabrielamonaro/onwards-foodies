@@ -1,10 +1,15 @@
 import Link from "next/link";
 import { getMeals } from "@/../lib/meals";
 import MealsGrid from "@/components/meals/meals-grid";
+import { Suspense } from "react";
+import LoadingMeals from "./loading";
 
-export default async function Meals() {
+async function Meals() {
   const meals = await getMeals();
+  return <MealsGrid meals={meals} />;
+}
 
+export default function MealsPage() {
   return (
     <div className="min-h-screen flex flex-col align-center justify-center">
       <header className="flex flex-col gap-12 my-[3rem] mx-auto mb-[5rem] w-[90%] max-w-[75rem] text-[#ddd6cb] text-[1.5rem]">
@@ -27,7 +32,9 @@ export default async function Meals() {
         </p>
       </header>
       <main className="flex-1">
-        <MealsGrid meals={meals} />
+        <Suspense fallback={<LoadingMeals />}>
+          <Meals />
+        </Suspense>
       </main>
     </div>
   );
