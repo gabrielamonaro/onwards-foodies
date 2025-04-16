@@ -6,8 +6,8 @@ interface IMealsGrid {
     id: string;
     title: string;
     slug: string;
-    image: string;
     summary: string;
+    image_url: string;
     creator: string;
   }[];
 }

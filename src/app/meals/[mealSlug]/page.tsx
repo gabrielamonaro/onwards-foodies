@@ -23,7 +23,7 @@ const Slug: FC<SlugPageProps> = ({ params }) => {
         <div className="relative  w-[30rem] h-[20rem]">
           <Image
             fill
-            src={meal.image}
+            src={meal.image_url}
             alt={meal.title}
             className="object-cover rounded-lg  shadow-sm animate-fadeSlideInFromLeft"
           />
@@ -40,9 +40,6 @@ const Slug: FC<SlugPageProps> = ({ params }) => {
         </div>
       </header>
       <main>
-        {/* <h1 style={{ color: "white", textAlign: "center" }}>
-          {params.mealSlug}
-        </h1> */}
         <p
           className="text-2xl bg-amber-100 text-black rounded-lg shadow-2xl p-8 max-w-[60rem] my-[2rem] mx-auto animate-fadeSlideInFromBottom"
           dangerouslySetInnerHTML={{ __html: meal.instructions }}
