@@ -6,7 +6,6 @@ import LoadingMeals from "./loading";
 
 async function Meals() {
   const meals = await getMeals();
-  console.log(meals);
   return <MealsGrid meals={meals} />;
 }
 
