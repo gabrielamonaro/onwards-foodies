@@ -64,7 +64,7 @@ export async function saveMeal(meal: Omit<ICreateMeal, "id">) {
   db.prepare(
     `
     INSERT INTO meals (title, summary, instructions, creator, creator_email, image, slug)
-    VALUES (@title, @summary, @instructions, @creator, @creator_email, @image_url, @slug)
+    VALUES (@title, @summary, @instructions, @creator, @creator_email, @image, @slug)
     `
   ).run(meal);
 }
