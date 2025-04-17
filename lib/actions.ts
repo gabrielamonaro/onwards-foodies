@@ -1,5 +1,6 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { saveMeal } from "./meals";
 
 export async function shareMeal(formData: FormData) {
@@ -8,16 +9,18 @@ export async function shareMeal(formData: FormData) {
   const title = formData.get("title")?.toString() ?? "";
   const summary = formData.get("summary")?.toString() ?? "";
   const instructions = formData.get("instructions")?.toString() ?? "";
-  const image = formData.get("image") as File;
+  const image_file = (formData.get("image") as File) ?? null;
   const creator = formData.get("creator")?.toString() ?? "";
   const creator_email = formData.get("creator_email")?.toString() ?? "";
   const meal = {
     title,
     summary,
     instructions,
-    image: image,
+    image_file: image_file,
     creator,
     creator_email,
+    image: null,
   };
   await saveMeal(meal);
+  redirect("/meals");
 }

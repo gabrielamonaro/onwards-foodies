@@ -10,7 +10,7 @@ export interface IMeal {
   id: string;
   title: string;
   slug: string;
-  image_url: string;
+  image: string;
   summary: string;
   creator: string;
   creator_email: string;
@@ -21,8 +21,8 @@ export interface ICreateMeal {
   id: string;
   title: string;
   slug?: string;
-  image: File;
-  image_url?: string;
+  image: string | null;
+  image_file: File;
   summary: string;
   creator: string;
   creator_email: string;
@@ -46,12 +46,12 @@ export async function saveMeal(meal: Omit<ICreateMeal, "id">) {
   meal.slug = slugify(meal.title, { lower: true });
   meal.instructions = xss(meal.instructions);
 
-  const extension = meal.image.name.split(".").pop();
+  const extension = meal.image_file.name.split(".").pop();
   const fileName = `${meal.slug}.${extension}`;
 
   const stream = fs.createWriteStream(`public/images/${fileName}`);
 
-  const bufferedImage = await meal.image.arrayBuffer();
+  const bufferedImage = await meal.image_file.arrayBuffer();
 
   stream.write(Buffer.from(bufferedImage), (error) => {
     if (error) {
@@ -59,7 +59,7 @@ export async function saveMeal(meal: Omit<ICreateMeal, "id">) {
     }
   });
 
-  meal.image_url = `/images/${fileName}`;
+  meal.image = `/images/${fileName}`;
 
   db.prepare(
     `
